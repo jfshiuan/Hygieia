@@ -167,7 +167,7 @@ public class FeatureServiceImpl implements FeatureService {
 
             if (tempRs.getsEpicID().equalsIgnoreCase(lastEpicID)) {
 
-                //check for null estimate, treat as 0
+                //FIXED: check for null estimate, treat as 0
                 if(tempRs.getsEstimate().length()>0) {
                     lineTotalEstimate += Integer.valueOf((tempRs.getsEstimate()));
                 }
@@ -182,9 +182,10 @@ public class FeatureServiceImpl implements FeatureService {
             } else {
                 lastEpicID = tempRs.getsEpicID();
 
-                //check for null estimate, treat as 0
+                //FIXED: check for null estimate, treat as 0
                 if(tempRs.getsEstimate().length()>0) {
-                    lineTotalEstimate += Integer.valueOf((tempRs.getsEstimate()));
+                    //FIXED: = instead of += for distinct feature/epic
+                    lineTotalEstimate = Integer.valueOf((tempRs.getsEstimate()));
                 }
                 else {
                     lineTotalEstimate = 0;
