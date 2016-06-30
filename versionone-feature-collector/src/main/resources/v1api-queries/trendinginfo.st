@@ -9,13 +9,12 @@ select:
    - Estimate
    - ToDo
    - AssetState
-   - Custom_SoftwareTesting.Name
    - IsDeleted
    - ChangeDate
 sort:
    - Timebox.BeginDate
 filter:
-  - (IsDeleted='False'|IsDeleted='True')
+  - (IsDeleted='False')
   - Timebox.ID!=''
   - Team.ID!=''
   - Timebox.EndDate<'$sprintEndDate$'
