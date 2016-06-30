@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.DatatypeConverter;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ import java.util.TimeZone;
 
 @Service
 public class FeatureServiceImpl implements FeatureService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FeatureServiceImpl.class);
 
     private final ComponentRepository componentRepository;
     private final FeatureRepository featureRepository;
@@ -164,7 +167,11 @@ public class FeatureServiceImpl implements FeatureService {
 
             if (tempRs.getsEpicID().equalsIgnoreCase(lastEpicID)) {
 
-                lineTotalEstimate += Integer.valueOf((tempRs.getsEstimate()));
+                //check for null estimate, treat as 0
+                if(tempRs.getsEstimate().length()>0) {
+                    lineTotalEstimate += Integer.valueOf((tempRs.getsEstimate()));
+                }
+
                 Iterables.getLast(relevantSuperFeatureEstimates);
 
                 if (!CollectionUtils.isEmpty(relevantSuperFeatureEstimates)) {
@@ -174,7 +181,15 @@ public class FeatureServiceImpl implements FeatureService {
 
             } else {
                 lastEpicID = tempRs.getsEpicID();
-                lineTotalEstimate += Integer.valueOf((tempRs.getsEstimate()));
+
+                //check for null estimate, treat as 0
+                if(tempRs.getsEstimate().length()>0) {
+                    lineTotalEstimate += Integer.valueOf((tempRs.getsEstimate()));
+                }
+                else {
+                    lineTotalEstimate = 0;
+                }
+
                 Feature f = new Feature();
                 f.setId(tempRs.getId());
                 f.setsEpicID(tempRs.getsEpicID());
