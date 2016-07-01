@@ -24,6 +24,7 @@
             {value: 'capone', name: 'Cap One', type: DashboardType.TEAM},
             {value: 'caponechatops', name: 'Cap One ChatOps', type: DashboardType.TEAM},
             {value: 'splitview', name: 'Split View', type: DashboardType.TEAM},
+            {value: 'mytemp', name: 'My Template', type: DashboardType.TEAM},
             {value: 'product-dashboard', name: 'Product Dashboard', type: DashboardType.PRODUCT}
         ];
 

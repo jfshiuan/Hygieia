@@ -133,7 +133,7 @@
 			 */
 			 //FIX: added check for undefined data.result[0]
 			if (data.result[0] === undefined || data.result[0].sSprintID === undefined) {
-				ctrl.daysTilEnd = moment(today).dash();
+				//ctrl.daysTilEnd = moment(today).dash();
 				ctrl.daysTilEnd = "[N/A]";
 			} else {
 				var nativeSprintEndDate = new Date(
