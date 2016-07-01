@@ -121,7 +121,8 @@
 			/*
 			 * Sprint Name
 			 */
-			if (data.result[0].sSprintID === undefined) {
+			 //FIX: added check for undefined data.result[0]
+			if (data.result[0] === undefined || data.result[0].sSprintID === undefined) {
 				ctrl.sprintName = "[No Sprint Available]";
 			} else {
 				ctrl.sprintName = data.result[0].sSprintName;
@@ -130,7 +131,8 @@
 			/*
 			 * Days Until Sprint Expires
 			 */
-			if (data.result[0].sSprintID === undefined) {
+			 //FIX: added check for undefined data.result[0]
+			if (data.result[0] === undefined || data.result[0].sSprintID === undefined) {
 				ctrl.daysTilEnd = moment(today).dash();
 				ctrl.daysTilEnd = "[N/A]";
 			} else {
